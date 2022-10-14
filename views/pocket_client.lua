@@ -41,6 +41,7 @@ return function(a, d)
 
     self.Network()
     self.ManagerIds = self.Network:lookup()
+    return self
   end
 
   function View:update()

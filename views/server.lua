@@ -84,6 +84,8 @@ return function(a, d)
     repeat sleep(1) until network:connect()
 
     self.Network(self.Data.Name.."#"..os.getComputerID())
+
+    return self
   end
 
   function View:update()

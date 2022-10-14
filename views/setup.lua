@@ -23,6 +23,7 @@ return function(a, d)
     self:connect("term_resize", self.handleResize)
     self:handleResize()
     self:next()
+    return self
   end
 
   function View:draw()
