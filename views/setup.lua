@@ -47,7 +47,7 @@ return function(a, d)
     term.clearLine()
     if self.Struct.Value.Filter then
       local match = string.match(self.Input.Value, self.Struct.Value.Filter)
-      if match then return print("Invalid Character '"..match.."' Found") end
+      if match then return term.writeNewLine("Invalid Character '"..match.."' Found") end
     end
     self.Data[self.Struct.Value.Name] = self.Struct.Value.Passthrough and self.Struct.Value.Passthrough(self.Input.Value) or self.Input.Value
     self.Input.Value = ""
