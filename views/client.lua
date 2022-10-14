@@ -46,17 +46,17 @@ return function(a, d)
   end
 
   function View:draw()
-    Manager = math.clamp(Manager, 1, #ManagerIds)
-    SelectedManagerId = ManagerIds[Manager]
-    SelectedManager = Managers[SelectedManagerId]
+    self.Manager = math.clamp(self.Manager, 1, #self.ManagerIds)
+    self.SelectedManagerId = self.ManagerIds[self.Manager]
+    self.SelectedManager = self.Managers[self.SelectedManagerId]
 
     term.setBackgroundColor(colors.lightGray)
     term.setTextColor(colors.white)
     term.clear()
     term.setCursorPos(1,1)
 
-    if not #ManagerIds == 0 then return term.writeCentered("Locating Managers")
-    elseif next(Managers) == nil or not SelectedManager then return term.writeCentered("Awaiting Manager Data")
+    if not #self.ManagerIds == 0 then return term.writeCentered("Locating Managers")
+    elseif next(self.Managers) == nil or not self.SelectedManager then return term.writeCentered("Awaiting Manager Data")
     end
 
     term.setBackgroundColor(colors.lightBlue)
@@ -65,14 +65,14 @@ return function(a, d)
     term.setCursorPos(self.Width - 2,1)
     term.write("> ")
     term.setCursorPos(1,1)
-    term.writeCentered(SelectedManager.Hostname, nil, 1)
+    term.writeCentered(self.SelectedManager.Hostname, nil, 1)
     term.setCursorPos(1,2)
     term.setBackgroundColor(colors.lightGray)
 
     local t = {
       { "Reactor", "Status", "Energy Prod. (rf/t)", "Energy (%)", "Fuel Con. (mb/t)", "Fuel (%)", "Waste (%)" }
     }
-    for i,reactor in ipairs(SelectedManager.Reactors) do
+    for i,reactor in ipairs(self.SelectedManager.Reactors) do
       local info, controls = {
         "Reactor ."..i,
         reactor.Active and "Online" or "Offline",

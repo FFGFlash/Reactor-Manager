@@ -57,8 +57,8 @@ return function(a, d)
     term.clear()
     term.setCursorPos(1,1)
 
-    if not #ManagerIds == 0 then return term.writeCentered("Locating Managers")
-    elseif next(Managers) == nil or not SelectedManager then return term.writeCentered("Awaiting Manager Data")
+    if not #self.ManagerIds == 0 then return term.writeCentered("Locating Managers")
+    elseif next(self.Managers) == nil or not self.SelectedManager then return term.writeCentered("Awaiting Manager Data")
     end
 
     self.Reactor = math.clamp(self.Reactor, 1, #self.SelectedManager.Reactors)
@@ -70,7 +70,7 @@ return function(a, d)
     term.setCursorPos(self.Width - 2,1)
     term.write("> ")
     term.setCursorPos(1,1)
-    term.writeCentered(SelectedManager.Hostname, nil, 1)
+    term.writeCentered(self.SelectedManager.Hostname, nil, 1)
 
     if not self.SelectedReactor then
       term.setCursorPos(1, term.getHeight())
