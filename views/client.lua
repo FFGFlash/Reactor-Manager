@@ -50,7 +50,6 @@ return function(a, d)
     SelectedManagerId = ManagerIds[Manager]
     SelectedManager = Managers[SelectedManagerId]
 
-
     term.setBackgroundColor(colors.lightGray)
     term.setTextColor(colors.white)
     term.clear()
@@ -62,6 +61,10 @@ return function(a, d)
 
     term.setBackgroundColor(colors.lightBlue)
     term.clearLine()
+    term.write(" <")
+    term.setCursorPos(self.Width - 2,1)
+    term.write("> ")
+    term.setCursorPos(1,1)
     term.writeCentered(SelectedManager.Hostname, nil, 1)
     term.setCursorPos(1,2)
     term.setBackgroundColor(colors.lightGray)

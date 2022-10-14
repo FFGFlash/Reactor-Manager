@@ -66,6 +66,10 @@ return function(a, d)
 
     term.setBackgroundColor(colors.lightBlue)
     term.clearLine()
+    term.write(" <")
+    term.setCursorPos(self.Width - 2,1)
+    term.write("> ")
+    term.setCursorPos(1,1)
     term.writeCentered(SelectedManager.Hostname, nil, 1)
 
     if not self.SelectedReactor then
@@ -77,6 +81,10 @@ return function(a, d)
     term.setCursorPos(1,2)
     term.setBackgroundColor(colors.lightBlue)
     term.clearLine()
+    term.write(" <")
+    term.setCursorPos(self.Width - 2,2)
+    term.write("> ")
+    term.setCursorPos(1,2)
     term.writeCentered("Reactor ."..self.Reactor, nil, 1)
 
     term.setCursorPos(2,4)
