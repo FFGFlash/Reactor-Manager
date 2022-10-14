@@ -109,7 +109,7 @@ return function(a, d)
     if not reactor then return end
     if my == 1 then
       if mx > 0 and mx <= 2 then self.Manager = self.Manager - 1
-      elseif mx > self.Width - 2, mx <= self.Width then self.Manager = self.Manager + 1
+      elseif mx > self.Width - 2 and mx <= self.Width then self.Manager = self.Manager + 1
       end
     else
       if mx > self.Button.Width and mx <= self.Button.Width * 2 then self.Network:send(self.SelectedManagerId, reactor.Active and "stop" or "start", reactorId)

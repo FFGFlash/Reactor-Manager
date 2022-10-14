@@ -128,11 +128,11 @@ return function(a, d)
       end
     elseif my == 1 then
       if mx > 0 and mx <= 2 then self.Manager = self.Manager - 1
-      elseif mx > self.Width - 2, mx <= self.Width then self.Manager = self.Manager + 1
+      elseif mx > self.Width - 2 and mx <= self.Width then self.Manager = self.Manager + 1
       end
     elseif my == 2 then
       if mx > 0 and mx <= 2 then self.Reactor = self.Reactor - 1
-      elseif mx > self.Width - 2, mx <= self.Width then self.Reactor = self.Reactor + 1
+      elseif mx > self.Width - 2 and mx <= self.Width then self.Reactor = self.Reactor + 1
       end
     end
   end
