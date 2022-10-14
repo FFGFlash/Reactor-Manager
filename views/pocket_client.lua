@@ -91,9 +91,9 @@ return function(a, d)
     term.setBackgroundColor(colors.lightGray)
 
     term.writeNewline("Status: "..reactor.Active and "Online" or "Offline")
-    term.writeNewline("Energy Produced: "..math.floor(reactor.Energy.ProducedLastTick * 100) / 100.."rf/t")
+    term.writeNewline("Energy Produced: "..(math.floor(reactor.Energy.ProducedLastTick * 100) / 100).."rf/t")
     term.writeNewline("Energy: %"..math.floor(reactor.Energy.Stored / reactor.Energy.Capacity * 10000) / 100)
-    term.writeNewLine("Fuel Consumed: "..math.floor(reactor.Fuel.ConsumedLastTick * 100) / 100.."mb/t")
+    term.writeNewLine("Fuel Consumed: "..(math.floor(reactor.Fuel.ConsumedLastTick * 100) / 100).."mb/t")
     term.writeNewLine("Fuel: %"..math.floor(reactor.Fuel.Amount / reactor.Fuel.Capacity * 10000) / 100)
     term.writeNewLine("Waste: %"..math.floor(reactor.Fuel.Waste / reactor.Fuel.Capacity * 10000) / 100)
 
