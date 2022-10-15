@@ -41,12 +41,14 @@ return function(a, d)
     repeat sleep(1) until network:connect()
 
     self.Network()
-    self.ManagerIds = self.Network:lookup()
+    self:update()
+
     return self
   end
 
   function View:update()
-    self.ManagerIds = self.Network:lookup()
+    local s, e = self.Network:lookup()
+    self.ManagerIds = s and e or {}
   end
 
   function View:draw()
