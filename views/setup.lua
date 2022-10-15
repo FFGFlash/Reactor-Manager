@@ -11,7 +11,7 @@ return function(a, d)
 
   function View:connect(event, callback, this) table.insert(self.Connections, self.App:connect(event, callback, this or self)) end
   function View:destroy() for _, conn in ipairs(self.Connections) do self.App:disconnect(conn) end end
-  function View:moveCursor(c) self.Input.Index = math.clamp(self.Input.Index, 0, string.len(self.Input.Value)) end
+  function View:moveCursor(c) self.Input.Index = math.clamp(self.Input.Index + c, 1, string.len(self.Input.Value)) end
   function View:handleResize() self.Width, self.Height = term.getSize() end
 
   function View:build()
@@ -29,7 +29,7 @@ return function(a, d)
   function View:draw()
     term.setCursorPos(1, self.Input.Line)
     term.clearLine()
-    term.write(struct.Name.." > ")
+    term.write(self.Struct.Value.Name.." > ")
     local x,_ = term.getCursorPos()
     term.write(self.Struct.Value.Replacer and string.gsub(self.Input.Value, ".", self.Struct.Value.Replacer) or self.Input.Value)
     term.setCursorPos(x + self.Input.Index, self.Input.Line)
