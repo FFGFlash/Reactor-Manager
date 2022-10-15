@@ -13,6 +13,7 @@ return function(a, d)
   function View:setInterval(callback, time, this, ...) table.insert(self.Intervals, self.App:setInterval(callback, time, this or self, ...)) end
   function View:handleResize() self.Width, self.Height = term.getSize() end
   function View:handleStop() self.Data:save() end
+  function View:load(...) return self.App:load(...) end
 
   function View:destroy()
     for _, conn in ipairs(self.Connections) do self.App:disconnect(conn) end
@@ -23,7 +24,7 @@ return function(a, d)
     self.Network = network(self.Data.Protocol)
     self.Managers = self:load(".managers")
     self.Button = { Width = 0, Height = 0}
-    for _,manager in pairs(self.Managers) do manager.Old = true end
+    for _,manager in ipairs(self.Managers) do manager.Old = true end
 
     self:connect("stop", self.handleStop)
     self:connect("term_resize", self.handleResize)
@@ -50,7 +51,7 @@ return function(a, d)
   function View:draw()
     self.Manager = math.clamp(self.Manager, 1, #self.ManagerIds)
     self.SelectedManagerId = self.ManagerIds[self.Manager]
-    self.SelectedManager = self.Managers[self.SelectedManagerId]
+    self.SelectedManager = self.Managers[self.SelectedManagerId + 1]
 
     term.setBackgroundColor(colors.lightGray)
     term.setTextColor(colors.white)
@@ -100,7 +101,7 @@ return function(a, d)
 
   function View:handleNetworkEvent(sender, event, ...)
     local args = { ... }
-    if event == "update" then self.Managers[sender] = { Old = false, Hostname = table.remove(args, 1), Reactors = table.remove(args, 1) }
+    if event == "update" then self.Managers[sender + 1] = { Old = false, Hostname = table.remove(args, 1), Reactors = table.remove(args, 1) }
     end
   end
 

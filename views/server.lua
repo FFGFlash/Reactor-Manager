@@ -11,6 +11,7 @@ return function(a, d)
   function View:setInterval(callback, time, this, ...) table.insert(self.Intervals, self.App:setInterval(callback, time, this or self, ...)) end
   function View:handleResize() self.Width, self.Height = term.getSize() end
   function View:handleStop() self.Data:save() end
+  function View:load(...) return self.App:load(...) end
 
   function View:destroy()
     for _, conn in ipairs(self.Connections) do self.App:disconnect(conn) end
