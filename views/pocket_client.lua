@@ -53,7 +53,7 @@ return function(a, d)
 
   function View:draw()
     self.Manager = math.clamp(self.Manager, 1, #self.ManagerIds)
-    self.SelectedManagerId = self.ManagerIds[self.Manager]
+    self.SelectedManagerId = self.ManagerIds[self.Manager] or -1
     self.SelectedManager = self.Managers[self.SelectedManagerId + 1]
 
     term.setBackgroundColor(colors.lightGray)
