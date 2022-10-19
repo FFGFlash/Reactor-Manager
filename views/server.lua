@@ -10,7 +10,6 @@ return function(a, d)
   function View:connect(event, callback, this) table.insert(self.Connections, self.App:connect(event, callback, this or self)) end
   function View:setInterval(callback, time, this, ...) table.insert(self.Intervals, self.App:setInterval(callback, time, this or self, ...)) end
   function View:handleResize() self.Width, self.Height = term.getSize() end
-  function View:handleStop() self.Data:save() end
   function View:load(...) return self.App:load(...) end
 
   function View:destroy()
@@ -52,11 +51,11 @@ return function(a, d)
       return self
     end
 
-    function Reactor:start() peripheral.setActive(true) end
-    function Reactor:stop() peripheral.setActive(false) end
-    function Reactor:setLevel(id, level) peripheral.setControlRodLevel(id, level) end
+    function reactor:start() peripheral.setActive(true) end
+    function reactor:stop() peripheral.setActive(false) end
+    function reactor:setLevel(id, level) peripheral.setControlRodLevel(id, level) end
 
-    function Reactor:setLevels(level)
+    function reactor:setLevels(level)
       for i = 1, self.NumberOfControlRods, 1 do self:setLevel(i - 1, level) end
     end
 
@@ -73,7 +72,6 @@ return function(a, d)
     self.Network = network(self.Data.Protocol)
     self.Reactors = self:getReactors()
 
-    self:connect("stop", self.handleStop)
     self:connect("term_resize", self.handleResize)
     self:connect("rednet_message", self.Network.handler(self.handleNetworkEvent, self), self.Network)
     self:setInterval(self.update, 0.25)

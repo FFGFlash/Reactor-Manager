@@ -14,7 +14,6 @@ return function(a, d)
   function View:connect(event, callback, this) table.insert(self.Connections, self.App:connect(event, callback, this or self)) end
   function View:setInterval(callback, time, this, ...) table.insert(self.Intervals, self.App:setInterval(callback, time, this or self, ...)) end
   function View:handleResize() self.Width, self.Height = term.getSize() end
-  function View:handleStop() self.Data:save() end
   function View:load(...) return self.App:load(...) end
 
   function View:destroy()
@@ -28,7 +27,6 @@ return function(a, d)
     self.Button = { Width = 0, Height = 0 }
     for _,manager in ipairs(self.Managers) do manager.Old = true end
 
-    self:connect("stop", self.handleStop)
     self:connect("term_resize", self.handleResize)
     self:connect("rednet_message", self.Network.handler(self.handleNetworkEvent, self), self.Network)
     self:connect("mouse_click", self.handleClick)

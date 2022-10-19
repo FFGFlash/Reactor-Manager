@@ -8,6 +8,9 @@ function App:constructor(...)
   self.Main = table.has(args, "--server") and "server" or "client"
   self.Pocket = pocket ~= nil
 
+  self:disconnectAll("terminate")
+  self:connect("terminate", self.handleTerminate)
+
   if self.Main == "server" and self.Pocket then self:stop()
   elseif self.Pocket then self.Main = "pocket_client"
   end
@@ -18,6 +21,11 @@ function App:constructor(...)
   end
 
   self:activate(not initialized and "setup" or self.Main)
+end
+
+function App:handleTerminate()
+  self.Reactor:save()
+  self:stop()
 end
 
 function App:activate(name, ...)
