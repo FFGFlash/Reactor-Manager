@@ -38,9 +38,11 @@ end
 
 function App:draw()
   if not self.Views.Active then return end
-  self.Views.Active:draw()
   term.setTextColor(system:getColor("nekos.text_color"))
   term.setBackgroundColor(system:getColor("nekos.background_color"))
+  term.clear()
+  term.setCursorPos(1,1)
+  self.Views.Active:draw()
 end
 
 return App

@@ -30,7 +30,7 @@ return function(a, d)
     term.setCursorPos(1, self.Input.Line)
     term.clearLine()
     term.write(self.Struct.Value.Name.." > ")
-    local x,_ = term.getCursorPos()
+    local x = term.getCursorX()
     term.write(self.Struct.Value.Replacer and string.gsub(self.Input.Value, ".", self.Struct.Value.Replacer) or self.Input.Value)
     term.setCursorPos(x + self.Input.Index, self.Input.Line)
   end
