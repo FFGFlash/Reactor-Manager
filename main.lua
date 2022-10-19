@@ -1,11 +1,11 @@
 local App = app()
 
-function App:constructor(...)
+function App:constructor(pargs, ...)
   local args = { ... }
   self.Views = { List = {}, Active = nil }
   local reactor, initialized = self:load(".reactor")
   self.Reactor = reactor
-  self.Main = table.has(args, "--server") and "server" or "client"
+  self.Main = pargs["--server"] and "server" or "client"
   self.Pocket = pocket ~= nil
 
   self:disconnectAll("terminate")
